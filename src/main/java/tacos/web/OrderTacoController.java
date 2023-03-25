@@ -2,10 +2,13 @@ package tacos.web;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import tacos.data.OrderRepository;
 import tacos.domain.TacoOrder;
 
 
@@ -14,6 +17,13 @@ import tacos.domain.TacoOrder;
 @Controller
 @SessionAttributes("tacoOrder")
 public class OrderTacoController {
+
+    private final OrderRepository orderRepository;
+
+    @Autowired
+    public OrderTacoController (OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
 
     @GetMapping("/current")
     public String orderForm (){
@@ -29,6 +39,7 @@ public class OrderTacoController {
             return "orderForm";
         }
         log.info("Order submitted: {}", tacoOrder);
+        orderRepository.save(tacoOrder);
         sessionStatus.setComplete();
 
         return "redirect:/";

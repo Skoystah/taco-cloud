@@ -3,6 +3,7 @@ package tacos.domain;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
@@ -24,6 +25,7 @@ public class TacoOrder {
     @NotBlank(message="City is required")
     private String deliveryCity;
     @NotBlank(message="State is required")
+    @Size(min = 2, max = 2, message = "State must consist of 2 characters")
     private String deliveryState;
     @NotBlank(message="Zip code is required")
     private String deliveryZip;
