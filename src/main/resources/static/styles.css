@@ -1,5 +1,13 @@
 div.grid {
     display: grid;
     grid-template-columns: 15% 15%;
+}
 
+.validationError {
+    color: #FF0000;
+    margin-bottom: 10px;
+}
+
+input {
+    margin-bottom: 10px;
 }
