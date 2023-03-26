@@ -1,9 +1,7 @@
 package tacos.data;
 
-import tacos.domain.Ingredient;
+import org.springframework.data.repository.CrudRepository;
 import tacos.domain.TacoOrder;
 
-public interface OrderRepository {
-    TacoOrder save(TacoOrder tacoOrder);
-
+public interface OrderRepository extends CrudRepository <TacoOrder, Long> {
 }
